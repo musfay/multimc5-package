@@ -1,0 +1,2 @@
+# These libraries only being used by MultiMC5
+addFilter("shlib-policy-missing-suffix")

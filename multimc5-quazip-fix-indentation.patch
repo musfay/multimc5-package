@@ -1,0 +1,81 @@
+From 020f258ec2f2333065dc1dc652d0a99301db80b0 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mustafa=20=C3=87al=C4=B1=C5=9Fkan?= <musfay@protonmail.com>
+Date: Sat, 27 Mar 2021 20:56:55 +0300
+Subject: [PATCH] fix indentation
+
+---
+ quazip/zip.c | 57 ++++++++++++++++++++++++++--------------------------
+ 1 file changed, 28 insertions(+), 29 deletions(-)
+
+diff --git a/quazip/zip.c b/quazip/zip.c
+index d8a1db0..5e5a81b 100644
+--- a/quazip/zip.c
++++ b/quazip/zip.c
+@@ -510,36 +510,35 @@ local ZPOS64_T zip64local_SearchCentralDir(const zlib_filefunc64_32_def* pzlib_f
+   uBackRead = 4;
+   while (uBackRead<uMaxBack)
+   {
+-    uLong uReadSize;
+-    ZPOS64_T uReadPos ;
+-    int i;
+-    if (uBackRead+BUFREADCOMMENT>uMaxBack)
+-      uBackRead = uMaxBack;
+-    else
+-      uBackRead+=BUFREADCOMMENT;
+-    uReadPos = uSizeFile-uBackRead ;
+-
+-    uReadSize = ((BUFREADCOMMENT+4) < (uSizeFile-uReadPos)) ?
+-      (BUFREADCOMMENT+4) : (uLong)(uSizeFile-uReadPos);
+-    if (ZSEEK64(*pzlib_filefunc_def,filestream,uReadPos,ZLIB_FILEFUNC_SEEK_SET)!=0)
+-      break;
+-
+-    if (ZREAD64(*pzlib_filefunc_def,filestream,buf,uReadSize)!=uReadSize)
+-      break;
+-
+-    for (i=(int)uReadSize-3; (i--)>0;)
+-      if (((*(buf+i))==0x50) && ((*(buf+i+1))==0x4b) &&
+-        ((*(buf+i+2))==0x05) && ((*(buf+i+3))==0x06))
+-      {
+-        uPosFound = uReadPos+i;
++	uLong uReadSize;
++	ZPOS64_T uReadPos ;
++	int i;
++	if (uBackRead+BUFREADCOMMENT>uMaxBack)
++		uBackRead = uMaxBack;
++	else
++	uBackRead+=BUFREADCOMMENT;
++	uReadPos = uSizeFile-uBackRead ;
++
++	uReadSize = ((BUFREADCOMMENT+4) < (uSizeFile-uReadPos)) ?
++	(BUFREADCOMMENT+4) : (uLong)(uSizeFile-uReadPos);
++	if (ZSEEK64(*pzlib_filefunc_def,filestream,uReadPos,ZLIB_FILEFUNC_SEEK_SET)!=0)
++		break;
++
++	if (ZREAD64(*pzlib_filefunc_def,filestream,buf,uReadSize)!=uReadSize)
++		break;
++
++	for (i=(int)uReadSize-3; (i--)>0;)
++	if (((*(buf+i))==0x50) && ((*(buf+i+1))==0x4b) && ((*(buf+i+2))==0x05) && ((*(buf+i+3))==0x06))
++      		{
++		uPosFound = uReadPos+i;
++		break;
++		}
++
++	if (uPosFound!=0)
+         break;
+-      }
+-
+-      if (uPosFound!=0)
+-        break;
+-  }
+-  TRYFREE(buf);
+-  return uPosFound;
++	}
++	TRYFREE(buf);
++	return uPosFound;
+ }
+ 
+ /*
+-- 
+2.30.2
+

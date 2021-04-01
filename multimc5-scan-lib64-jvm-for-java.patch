@@ -1,0 +1,24 @@
+From 54a66c5997b5bbd060a1a25d0ee491f501f9ef71 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Mustafa=20=C3=87al=C4=B1=C5=9Fkan?= <musfay@protonmail.com>
+Date: Tue, 30 Mar 2021 12:47:56 +0300
+Subject: [PATCH] scan lib64 jvm for java
+
+---
+ api/logic/java/JavaUtils.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/api/logic/java/JavaUtils.cpp b/api/logic/java/JavaUtils.cpp
+index 647711e5..a4ab06b3 100644
+--- a/api/logic/java/JavaUtils.cpp
++++ b/api/logic/java/JavaUtils.cpp
+@@ -328,6 +328,7 @@ QList<QString> JavaUtils::FindJavaPaths()
+     // general locations used by distro packaging
+     scanJavaDir("/usr/lib/jvm");
+     scanJavaDir("/usr/lib32/jvm");
++    scanJavaDir("/usr/lib64/jvm");
+     // javas stored in MultiMC's folder
+     scanJavaDir("java");
+     return javas;
+-- 
+2.30.2
+
