@@ -1,4 +1,4 @@
-#multimc5-package
+# multimc5-package
 
 multimc5 package for openSUSE
 
